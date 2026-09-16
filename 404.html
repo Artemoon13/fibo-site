@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>estimated · 404</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=IBM+Plex+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" id="css">
+</head>
+<body>
+<main class="lost">
+  <div class="empty-term" style="max-width:640px">
+    <canvas class="px" data-sprite="owl:empty" data-scale="3"></canvas>
+    <div class="col">
+      <span><span class="lime">(-,-)</span>  estimated · 404</span>
+      <span class="mut">0 tasks · 0 closed · 0 estimated · 0 counted</span>
+      <span style="margin-top:8px">estimated: 1 page. found: <span class="amber">0</span>.</span>
+      <span style="margin-top:8px"><a href="/" id="home">← the page that exists</a></span>
+    </div>
+  </div>
+</main>
+<script>
+  // A project site lives under /<repo>/: point the stylesheet, the sprites and the link home there.
+  // Opened from disk, everything sits next to this file.
+  (function () {
+    var seg = /\.github\.io$/i.test(location.hostname) ? location.pathname.split('/').filter(Boolean)[0] : '';
+    var base = location.protocol === 'file:' ? '' : seg ? '/' + seg + '/' : '/';
+    document.getElementById('css').href = base + 'style.css';
+    document.getElementById('home').href = base || 'index.html';
+    var s = document.createElement('script');
+    s.src = base + 'sprites.js';
+    s.onload = function () { window.Sprites.paintAll(); window.Sprites.favicon('owl:empty'); };
+    document.body.appendChild(s);
+  })();
+</script>
+</body>
+</html>

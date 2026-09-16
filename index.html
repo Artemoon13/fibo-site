@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>estimated — git blame for your promises</title>
+<meta name="description" content="You have made a thousand estimates. You have checked none of them. estimated reads git and your tracker, divides took by said, and prints one number.">
+<meta property="og:title" content="estimated — git blame for your promises">
+<meta property="og:description" content="You have made a thousand estimates. You have checked none of them.">
+<meta name="theme-color" content="#050605">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page" id="page">
+
+<nav class="nav">
+  <div class="nav-in">
+    <a href="#top" class="brand"><canvas class="px" id="navOwl" data-sprite="owl:auditor" data-scale="1"></canvas><span class="brand-word">ESTIMATED</span></a>
+    <div class="nav-links">
+      <a href="#film">film</a><a href="#start">start</a><a href="#multiplier">multiplier</a><a href="#refuses">refusals</a><a href="#disk">disk</a><a href="#token" class="token">token</a>
+      <button class="man-btn" id="manBtn" title="man estimated  (or press ?)">?</button>
+    </div>
+    <button class="btn-nav" data-copy="install"><span class="ok" hidden>copied ✓</span><span class="idle">pipx install</span></button>
+  </div>
+</nav>
+
+<header id="top" class="hero" data-screen-label="hero">
+  <div class="hero-in">
+    <div class="hero-copy">
+      <div class="hero-marks">
+        <canvas class="px hero-owl" id="heroOwl" data-sprite="big:report" data-scale="8" title="it follows the cursor. anywhere on the page."></canvas>
+        <canvas class="px hero-word" data-sprite="word" data-scale="6"></canvas>
+      </div>
+      <h1 class="title">git blame for<br>your <span class="lime">promises</span>.</h1>
+      <p class="lede">You have made a thousand estimates. You have checked none of them. <span class="ink">estimated</span> reads the tracker and git, divides <span class="hint lime">took</span> by <span class="ink">said</span> for every task you ever closed, and prints one number.</p>
+      <div class="cta">
+        <button class="btn-big" data-copy="install"><span class="ok" hidden>copied ✓ · the owl saw</span><span class="idle">$ pipx install estimated</span></button>
+        <a class="btn-ghost" data-repo href="https://github.com/Artemoon13/estimated">github</a>
+      </div>
+      <div class="chips"><span>git history</span><span>terminal</span><span>deps <b>0</b></span><span>subjects <b class="amber">one</b></span><span>nothing leaves the machine</span></div>
+      <a href="#token" class="token-pill"><span class="tk" data-t="ticker">$ESTD</span><span data-t="network">robinhood chain</span><span class="dim2">·</span><span class="ink" data-t="status">not live yet</span><span class="lime" style="margin-left:6px">→</span></a>
+    </div>
+
+    <div class="term">
+      <div class="bar"><i></i><i></i><i></i><span class="path" data-d="path">/tmp/estimated-demo</span><span class="right">17:40 · fri</span></div>
+      <div class="term-body">
+        <div><span class="mut">$ </span>estimated</div>
+        <div class="loader" id="loader">
+          <div class="row"><span>reading history · said 1.0 s</span><span class="ink" id="loadLabel">0.0 s</span></div>
+          <div class="track"><div class="said" id="saidBar"></div><div class="took" id="tookBar"></div><div class="promise"></div></div>
+          <div class="row dim"><span>← promised</span><span class="amber" id="late" hidden>late ×1.0</span></div>
+        </div>
+        <div id="report" hidden></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker" data-screen-label="ticker"><div class="marquee-track" id="tape"></div></div>
+
+<section id="film" class="sec" data-reveal="1" data-screen-label="00 film">
+  <div class="sec-head"><span class="sha">f00d1e5</span><h2>00 film · how it runs</h2><span class="meta">said: a gif · took: the real thing, in your browser</span></div>
+  <p class="prose" style="margin-top:24px;max-width:64ch">A working copy of the program, in the browser, on the demo repository. Every line it prints was printed by the real one first; the refusals are the same rules. Type, or press a button. Nothing here is sent anywhere.</p>
+  <div class="shell">
+    <div class="shell-bar">
+      <canvas class="px" id="termOwl" data-sprite="owl:auditor" data-scale="1"></canvas>
+      <span class="who">you@demo</span>
+      <span><span data-d="path">/tmp/estimated-demo</span> · <span data-d="tasks">230</span> tasks · <span data-d="counted">169</span> counted · <span class="ink"><span id="ledgerN" data-d="ledger">2</span> in the ledger</span></span>
+      <span class="flags"><span class="on">ENGINE READY</span><span>ONE SUBJECT</span><span>NO NETWORK</span><span>NOTHING LEAVES</span></span>
+    </div>
+    <div class="out" id="out"></div>
+    <div class="prompt"><b>$</b><input id="cmd" placeholder="type a command — or press ↑ for the last one · help" spellcheck="false" autocomplete="off" aria-label="command"></div>
+    <div class="quick" id="quick"></div>
+  </div>
+  <div class="films" id="films"></div>
+</section>
+
+<section id="start" class="sec" data-reveal="1" data-screen-label="01 thirty seconds">
+  <div class="sec-head"><span class="sha">a3f9c1e</span><h2>01 thirty seconds</h2><span class="meta">said: 30 s · took: <span class="ink" id="elapsed">0 s</span></span></div>
+  <div class="cols" style="gap:24px 48px">
+    <div class="stack">
+      <div class="codebox">
+        <div><span class="mut">$ </span>pipx install git+<span data-repo-text>https://github.com/Artemoon13/estimated</span></div>
+        <div><span class="mut">$ </span>estimated demo</div>
+        <div class="dim"># then, inside your own repository:</div>
+        <div><span class="mut">$ </span>estimated</div>
+      </div>
+      <p class="prose">The demo is two years of made-up history — the same numbers on every machine. Yours starts empty, and neither run sends anything anywhere.</p>
+    </div>
+    <div class="badges">
+      <span class="badge"><span>PYTHON</span><span class="on">3.10+</span></span>
+      <span class="badge"><span>DEPS</span><span class="on">0</span></span>
+      <span class="badge"><span>TESTS</span><span class="on"><span data-d="tests">229</span> ✓</span></span>
+      <span class="badge"><span>LICENSE</span><span>MIT</span></span>
+      <span class="badge"><span>SUBJECTS</span><span class="gold">ONE</span></span>
+      <span class="badge"><span>LEAVES THE MACHINE</span><span>NOTHING</span></span>
+    </div>
+  </div>
+</section>
+
+<section id="promise" class="sec" data-reveal="1" data-screen-label="02 a promise with a number">
+  <div class="sec-head"><span class="sha">7b02d4c</span><h2>02 a promise with a number on it</h2><span class="meta">said: 3 lines · took: 3 lines · ×1.0</span></div>
+  <div class="cols">
+    <div class="defs">
+      <div><b>said</b><span>an estimate written down before the first commit: in your tracker, in the commit, or in the ledger</span></div>
+      <div><canvas class="px" data-sprite="took" data-scale="2" style="margin-top:4px"></canvas><span>first commit → merge, in working hours, in the time zone your own commits carry</span></div>
+      <div><b class="times">×</b><span>took ÷ said for every task you finished, and the median of those, taken in log space</span></div>
+    </div>
+    <div class="stack g22">
+      <p class="story">The auth migration <span class="hint" data-g="2 days"><b class="lime">took 9.6 days</b></span> and shipped on a Friday. The search index <span class="hint" data-g="4 hours"><b class="lime">took 14 hours</b></span>. Hover a number — it tells you what was promised.</p>
+      <p class="prose">Your tracker already holds years of estimates (Jira, Linear, GitHub, GitLab), so the first run has history to work with. Without a tracker, put <span class="ink">Estimate: 2d</span> in the first commit of a branch. Without either, <span class="ink">estimated say PROJ-412 2d</span> writes it down before you start.</p>
+      <blockquote class="aph"><span class="hash">#</span><span>An estimate nobody checks is not an estimate. It is a mood.</span></blockquote>
+    </div>
+  </div>
+</section>
+
+<section id="multiplier" class="sec" data-reveal="1" data-screen-label="03 the multiplier">
+  <div class="sec-head"><span class="sha">e91a5f0</span><h2>03 the multiplier</h2><span class="meta">said: 1 screen · took: 2 screens · <span class="amber">×2.0</span></span></div>
+  <div class="cols w300">
+    <div class="stack g18">
+      <div class="huge-row" id="multBox"><span class="huge"><span id="multNum">0.0</span><span class="x">×</span></span><span class="huge-note">this number is the whole product.<br>it does not tell you to estimate better.<br>it tells you what to multiply by.</span></div>
+      <div class="panel">
+        <div class="panel-top"><span>drift · 90-day rolling median</span><span>two years → now</span></div>
+        <div class="bars" id="bars"></div>
+        <div class="panel-foot"><span id="driftFirst">3.7×</span><span class="amber" id="driftLast">4.5× · last 90 days</span></div>
+      </div>
+    </div>
+    <div class="rules">
+      <div><b>median in log space.</b> ×4 and ×¼ are the same distance from ×1, and the median does not care about the one ×40 disaster.</div>
+      <div><b>working hours.</b> mon–fri, 9–18, in the offset your own commits carried. a day is 8h, a week is 40h. <span class="ink">--calendar</span> takes both sides literally, shown small.</div>
+      <div><b>span and active.</b> span: first commit → merge. active clips any pause over three working days. the gap is how long tasks sat waiting.</div>
+      <div><b>p90</b> is the bad day: <span class="amber">in the worst case, <span data-d="p90">×8.6</span></span>.</div>
+      <div><b>by kind of work.</b> tracker labels, then where the diff went (<span class="ink">migrations/</span>, <span class="ink">tests/</span>), then the words in the title. five tasks to be shown.</div>
+      <div><span class="ink">estimated PROJ-412</span> takes one task apart. <span class="ink">estimated drift</span> shows it quarter by quarter. <span class="ink">estimated doctor</span> checks that nobody nudged anything.</div>
+    </div>
+  </div>
+</section>
+
+<section id="refuses" class="sec" data-reveal="1" data-screen-label="04 what it refuses">
+  <div class="sec-head"><span class="sha">c47d210</span><h2>04 what it refuses</h2><span class="meta">said: 4 examples · took: 5 · <span class="amber">×1.25</span></span></div>
+  <div class="cols w300">
+    <div class="refusals">
+      <div class="refusal"><canvas class="px" data-sprite="owl:refuse" data-scale="1"></canvas><span class="cmd">estimated say PROJ-412 soon</span><span class="why"><b>✗</b> not a duration</span></div>
+      <div class="refusal"><canvas class="px" data-sprite="owl:refuse" data-scale="1"></canvas><span class="cmd">estimated say PROJ-412 2d</span><span class="why"><b>✗</b> written after the work began</span></div>
+      <div class="refusal"><canvas class="px" data-sprite="owl:refuse" data-scale="1"></canvas><span class="cmd">a task with no estimate</span><span class="why"><b>✗</b> not counted, and not guessed</span></div>
+      <div class="refusal"><canvas class="px" data-sprite="owl:refuse" data-scale="1"></canvas><span class="cmd">--whose someone@else.com</span><span class="why"><b>✗</b> this tool has one subject</span></div>
+      <div class="refusal"><canvas class="px" data-sprite="owl:refuse" data-scale="1"></canvas><span class="cmd">story points, no rate given</span><span class="why"><b>✗</b> points are not time</span></div>
+    </div>
+    <div class="stack">
+      <p class="prose"><b>not a duration.</b> "soon", "by the end of the sprint", "quick" are not estimates. say a number and a unit.</p>
+      <p class="prose"><b>written after the work began.</b> the program knows when the field changed and when the first commit was made. the value that stood at the first commit counts. <span class="ink">doctor</span> lists the rest.</p>
+      <p class="prose"><b>not guessed.</b> a task without an estimate gets nothing by analogy, by average or by diff size. it is left out, and the output says so.</p>
+      <p class="prose"><b>one subject.</b> yours. it will not print another person's multiplier, aggregate a team, or export. <span class="ink">--whose</span> with anyone else's address fails loudly.</p>
+      <p class="prose"><b>points are not time.</b> <span class="ink">--points-as-hours=N</span> exists, and the output then says the number rests on your assumption.</p>
+      <blockquote class="aph" style="margin-top:8px"><span class="hash">#</span><span>A mirror pointed at someone else is a different object with a different name.</span></blockquote>
+    </div>
+  </div>
+</section>
+
+<section id="disk" class="sec" data-reveal="1" data-screen-label="05 on disk">
+  <div class="sec-head"><span class="sha">51fe8ab</span><h2>05 on disk · the ledger</h2><span class="meta">said: 4 files · took: 4 files · ×1.0</span></div>
+  <div class="cols w340">
+    <div class="stack g18">
+      <div class="files"><span class="name">.estimated.json</span><span>optional, yours: who you are, which tracker to ask</span><span class="name">.estimated/ledger.jsonl</span><span>every line hashes the one before</span><span class="name">.estimated/ledger.head</span><span>the hash of the last line</span><span class="name">.estimated/cache/</span><span>tracker responses with a TTL; delete it any time</span></div>
+      <p class="prose">That is all of it. No database, no index, no daemon, no server, no account, no telemetry. Every run recomputes from history. With a tracker it only reads — GET and GraphQL queries; a mutation is refused before it is sent.</p>
+    </div>
+    <div class="ledger">
+      <div class="ledger-top"><span>.estimated/ledger.jsonl</span><span>try editing a line</span></div>
+      <div id="ledger"></div>
+      <div class="ledger-doc"><canvas class="px" id="docOwl" data-sprite="owl:report" data-scale="2" style="flex:none"></canvas><span class="msg"><span class="ink">$ estimated doctor</span><br><span id="docMsg"></span></span><button class="btn-ghost" id="tamper">edit line 2</button></div>
+    </div>
+  </div>
+  <blockquote class="aph" style="margin-top:36px;max-width:60ch"><span class="hash">#</span><span>A multiplier you can quietly edit after a bad quarter is not a multiplier.</span></blockquote>
+</section>
+
+<section id="token" class="sec" data-reveal="1" data-screen-label="06 the token">
+  <div class="sec-head"><span class="sha">deadbee</span><h2>06 the token</h2><span class="meta">the program does not touch it · said: nothing · took: nothing</span></div>
+  <div class="token-grid">
+    <div class="token-card">
+      <div class="token-name"><canvas class="px" data-sprite="owl:auditor" data-scale="2"></canvas><span class="tk" data-t="ticker">$ESTD</span><span class="net" data-t="network">robinhood chain</span><span class="status" data-t="status">not live yet</span></div>
+      <div class="price-row"><span class="price" id="tokenPrice">—</span><span class="huge-note">price · <span class="ink">said</span> at launch<br><span class="lime">took</span> · whatever the chart says</span></div>
+      <div class="kv"><span class="k">contract</span><span class="v" id="tokenContract">—</span><span class="k">swap</span><span><a id="tokenSwap" href="#token">—</a></span><span class="k">explorer</span><span><a id="tokenExplorer" href="#token">—</a></span></div>
+      <div class="cta"><a class="btn-gold" id="swapBtn" href="#token">swap <span data-t="ticker">$ESTD</span></a><button class="btn-ghost gold" id="copyCa"><span class="ok" hidden>copied ✓</span><span class="idle">copy contract</span></button></div>
+    </div>
+    <div class="token-side">
+      <div class="no"><canvas class="px" data-sprite="owl:refuse" data-scale="1" style="flex:none"></canvas><span class="cmd">estimated say <span data-t="ticker">$ESTD</span> 100x</span><span class="why"><b>✗</b> not a duration</span></div>
+      <div class="no"><canvas class="px" data-sprite="owl:refuse" data-scale="1" style="flex:none"></canvas><span class="cmd">--whose the-community</span><span class="why"><b>✗</b> one subject</span></div>
+      <div class="no"><canvas class="px" data-sprite="owl:refuse" data-scale="1" style="flex:none"></canvas><span class="cmd">estimated predict <span data-t="ticker">$ESTD</span></span><span class="why"><b>✗</b> it predicts nothing</span></div>
+      <div class="about">
+        <p style="margin:0;text-wrap:pretty">A community token. The code does not know it exists: there is no import, no flag, no line in the ledger. <span class="ink">estimated</span> will never require it and will never print its price.</p>
+        <p style="margin:0;text-wrap:pretty">No promises. If someone tells you a date, run <span class="ink">estimated</span> on them first.</p>
+        <p style="margin:0;font-size:11px;text-wrap:pretty" class="dim2">not financial advice · the owl is not a financial advisor · it is not even a real owl</p>
+      </div>
+    </div>
+  </div>
+  <div class="chart">
+    <div class="chart-top"><b>live chart</b><span>powered by geckoterminal</span><span class="pool" id="chartPool">— · pool address appears here</span></div>
+    <div id="chartLive" hidden></div>
+    <div class="fake" id="chartFake">
+      <div class="grid"></div>
+      <div class="candles" id="candles"></div>
+      <div class="axis"><span>—</span><span>—</span><span>—</span><span>—</span><span>—</span></div>
+      <div class="volume" id="volume"></div>
+      <div class="fake-note"><div><canvas class="px" data-sprite="owl:empty" data-scale="2" style="flex:none"></canvas><span><span class="ink">nothing is deployed yet.</span> when <span data-t="ticker">$ESTD</span> is live on a pool the indexers can see, the pair, the price and this chart fill themselves in. what you see behind is made up, like the demo.</span></div></div>
+    </div>
+    <div class="chart-foot"><span>powered by</span><a href="https://www.geckoterminal.com">GeckoTerminal ↗</a></div>
+  </div>
+</section>
+
+<section id="limits" class="sec" data-reveal="1" data-screen-label="07 honest limits">
+  <div class="sec-head"><span class="sha">0d9b3e7</span><h2>07 bugs · honest limits</h2><span class="meta">said: 3 · took: 5 · <span class="amber">×1.7</span></span></div>
+  <div class="limits">
+    <div><b>IT CANNOT SEE THINKING</b><span>the clock starts at the first commit, not the first thought. your real multiplier is higher than the one printed.</span></div>
+    <div><b>IT CANNOT SEE INTERRUPTION</b><span>a branch that sat for a week looks like a week of work. <span class="ink">active</span> is there for that, and it is still an approximation.</span></div>
+    <div><b>THE DEMO IS A DEMO</b><span>reproducible, and nobody's record of promises. yours starts empty.</span></div>
+    <div><b>IT DOES NOT KNOW THE RIGHT ANSWER</b><span>there is no correct estimate. it knows what you said and how long it took.</span></div>
+    <div><b>IT PREDICTS NOTHING</b><span>no model, no opinion. what was written down, what happened, one division.</span></div>
+    <div><b class="ink">ROADMAP · ORDER, NOT CALENDAR</b><span class="roadmap"><span>00 the tool <span class="lime">✓</span></span><span>01 the multiplier <span class="lime">✓</span></span><span>02 by kind of work <span class="lime">✓</span></span><span>03 the drift <span class="lime">✓</span></span><span>04 more sources <span class="dim">YouTrack, Azure Boards, Shortcut …</span></span></span></div>
+  </div>
+</section>
+
+<footer class="foot" data-reveal="1" data-screen-label="footer">
+  <div class="empty-term"><canvas class="px" data-sprite="owl:empty" data-scale="3" style="flex:none"></canvas><div class="col"><span><span class="lime">(-,-)</span>  estimated · ~/new-repo</span><span class="mut">0 tasks · 0 closed · 0 estimated · 0 counted</span><span style="margin-top:8px">nothing to count yet. say something first:  <span class="lime">estimated say PROJ-1 2d</span></span><span style="margin-top:8px" class="dim2">estimated: 1 page. found: 1. <span class="lime">×1.0</span> — the owl has seen enough.</span></div></div>
+  <div class="foot-bar"><canvas class="px" data-sprite="owl:auditor" data-scale="1"></canvas><span class="word">ESTIMATED</span><span>MIT</span><span>·</span><span>built for the fun of it</span><span>·</span><span>python -m unittest · <span data-d="tests">229</span> tests, stdlib only</span><a class="gh" data-repo href="https://github.com/Artemoon13/estimated">github ↗</a></div>
+</footer>
+
+<div class="rail" id="rail" hidden>
+  <div class="branch"></div>
+  <div class="progress" id="railProg"></div>
+  <div id="ticks"></div>
+  <div class="perch" id="perch"><canvas class="px" id="perchOwl" data-sprite="owl:report" data-scale="2"></canvas></div>
+  <div class="pct" id="railPct">0%</div>
+  <div class="where" id="railWhere">you are in TOP</div>
+</div>
+
+<div class="man" id="man" hidden>
+  <div class="man-page">
+    <div class="man-head"><span>ESTIMATED(1)</span><span>User Commands</span><span>ESTIMATED(1)</span></div>
+    <div class="man-grid">
+      <b>NAME</b><span>estimated — git blame for your promises</span>
+      <b>FILM</b><span><a href="#film">how it runs · a copy of the program, in the browser</a></span>
+      <b>SYNOPSIS</b><span><a href="#start">estimated</a> · <a href="#start">estimated demo</a> · <a href="#disk">estimated say KEY 2d</a> · <a href="#disk">estimated doctor</a></span>
+      <b>DESCRIPTION</b><span><a href="#promise">a promise with a number on it</a> · <a href="#multiplier">the multiplier</a></span>
+      <b>REFUSALS</b><span><a href="#refuses">not a duration · written after start · not guessed · one subject · points ≠ time</a></span>
+      <b>FILES</b><span><a href="#disk">.estimated.json · .estimated/ledger.jsonl · .estimated/cache/</a></span>
+      <b>TOKEN</b><span><a href="#token"><span data-t="ticker">$ESTD</span> · the program does not touch it</a></span>
+      <b>BUGS</b><span><a href="#limits">it cannot see thinking. it cannot see interruption. it predicts nothing.</a></span>
+      <b>AUTHOR</b><span>one subject: you</span>
+    </div>
+    <div class="man-foot"><span>MIT</span><span>esc to close</span><span>estimated <span data-d="version">0.1.0</span></span></div>
+  </div>
+</div>
+
+</div>
+<script src="config.js"></script>
+<script src="data.js"></script>
+<script src="sprites.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
