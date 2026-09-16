@@ -1,4 +1,4 @@
-/* estimated — the landing page. Lime · amber · off-white on near-black; Silkscreen and IBM Plex Mono. */
+/* fibo — the landing page. Lime · amber · off-white on near-black; Silkscreen and IBM Plex Mono. */
 :root {
   --bg: #050605; --panel: #070907; --panel2: #0b0d0b; --ink: #e8e8e0; --text: #d6d9d2; --mut: #9a9f98;
   --dim: #6f7a6a; --dim2: #5a6a4a; --lime: #b5e853; --lime-hi: #d7ff7a; --lime-dk: #6f9a2a; --moss: #3d5c1f;
@@ -264,7 +264,7 @@ canvas.px { image-rendering: pixelated; display: block; }
 .rail .pct { position: absolute; left: 0; right: 0; top: 16px; text-align: center; font: 400 9px/1 var(--pixel); color: var(--dim2); }
 .rail .where { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%) rotate(180deg); writing-mode: vertical-rl; font: 400 9px/1 var(--pixel); color: var(--dim2); white-space: nowrap; }
 
-/* man estimated */
+/* man fibo */
 .man { position: fixed; inset: 0; z-index: 80; background: rgba(5, 6, 5, .86); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; padding: 24px; }
 .man-page { width: 100%; max-width: 720px; max-height: 90vh; overflow: auto; border: 1px solid var(--moss); background: var(--panel); padding: 28px 30px; font: 400 13px/1.75 var(--mono); color: var(--text); box-shadow: 0 0 80px -20px rgba(181, 232, 83, .4); }
 .man-head, .man-foot { display: flex; justify-content: space-between; color: var(--mut); }

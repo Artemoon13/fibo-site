@@ -36,7 +36,7 @@ class Page(unittest.TestCase):
                     self.assertIsNone(re.search("[Ѐ-ӿ]", path.read_text(encoding="utf-8")))
 
     def test_every_github_link_points_at_the_program(self):
-        self.assertIn('repoUrl: "https://github.com/Artemoon13/estimated"', (SITE / "config.js").read_text(encoding="utf-8"))
+        self.assertIn('repoUrl: "https://github.com/Artemoon13/fibo"', (SITE / "config.js").read_text(encoding="utf-8"))
         self.assertNotIn("location.hostname.split", (SITE / "app.js").read_text(encoding="utf-8"))
 
     def test_the_page_says_what_it_is(self):

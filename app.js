@@ -1,8 +1,8 @@
-// estimated — the landing page, without a framework.
+// fibo — the landing page, without a framework.
 // data.js is made by site/build.py from the real program; config.js is the one file meant for hands.
 (() => {
   'use strict';
-  const D = window.ESTIMATED, CFG = window.ESTIMATED_CONFIG || {}, TK = CFG.token || {};
+  const D = window.FIBO, CFG = window.FIBO_CONFIG || {}, TK = CFG.token || {};
   if (!D || !window.Sprites) return;
   const O = D.out, SAY = D.say, S = SAY.strings, demo = D.demo;
   const $ = (s, r = document) => r.querySelector(s);
@@ -25,7 +25,7 @@
   window.Sprites.favicon();
 
   // ── where the code lives: the program's own repository, named in config.js ──
-  const repoUrl = CFG.repoUrl || 'https://github.com/Artemoon13/estimated';
+  const repoUrl = CFG.repoUrl || 'https://github.com/Artemoon13/fibo';
   const install = `pipx install git+${repoUrl}`;
   $$('[data-repo]').forEach((a) => { a.href = repoUrl; });
   $$('[data-repo-text]').forEach((e) => { e.textContent = repoUrl; });
@@ -72,7 +72,7 @@
     + `<span class="dim2">n=${k[2]}</span>`).join('');
   const spark = demo.drift.spark;
   report.innerHTML = `<div class="rep-head"><canvas class="px" data-sprite="owl:report" data-scale="2" style="flex:none;margin-top:4px"></canvas>`
-    + `<div class="col"><span><span class="lime">(o,o)</span>  estimated · ${esc(demo.path)}</span><span class="mut">${demo.tasks} tasks · ${demo.closed} closed · `
+    + `<div class="col"><span><span class="lime">(o,o)</span>  fibo · ${esc(demo.path)}</span><span class="mut">${demo.tasks} tasks · ${demo.closed} closed · `
     + `${demo.estimated} estimated · <span class="lime">${demo.counted} counted</span></span></div></div>`
     + `<div class="g3 sep">${groups}</div>`
     + `<div class="rep-mult sep"><span class="label">your multiplier</span><span style="display:flex;align-items:baseline;gap:12px">`
@@ -134,7 +134,7 @@
     }
     return h.map((v) => v.toString(16).padStart(8, '0')).join('');
   }
-  window.estimatedSha256 = sha256; // for anyone who wants to check the chain by hand
+  window.fiboSha256 = sha256; // for anyone who wants to check the chain by hand
 
   // ── the program, in the browser. every line below was printed by the real one ──
   const out = $('#out'), input = $('#cmd'), termOwl = $('#termOwl'), ledgerN = $('#ledgerN');
@@ -145,21 +145,21 @@
   const NOT_HERE = new Set(['export', 'team', 'predict', 'forecast', 'all', 'everyone', 'aggregate']);
   const refuse = (msg) => `${SAY.refuse}  ${msg}`;
   const HELP = [
-    'estimated                    the report: one number, from your history',
-    'estimated demo               two years of made-up history, same on every machine',
-    'estimated KEY                one task, taken apart',
-    'estimated say KEY 2d         write a promise down before you start (h · d · w)',
-    'estimated doctor             check that nobody nudged anything',
-    'estimated drift              quarter by quarter',
-    'estimated --calendar · -v    calendar time · the detailed view',
-    'estimated --whose EMAIL      one subject: it has to be one of yours',
-    'man estimated                the man page  (or press ?)',
+    'fibo                    the report: one number, from your history',
+    'fibo demo               two years of made-up history, same on every machine',
+    'fibo KEY                one task, taken apart',
+    'fibo say KEY 2d         write a promise down before you start (h · d · w)',
+    'fibo doctor             check that nobody nudged anything',
+    'fibo drift              quarter by quarter',
+    'fibo --calendar · -v    calendar time · the detailed view',
+    'fibo --whose EMAIL      one subject: it has to be one of yours',
+    'man fibo                the man page  (or press ?)',
     'clear', '', 'it has one subject. yours.'];
 
   function tone(line) {
     const t = line.trim();
     if (/^\$ /.test(line)) return 'ink b';
-    if (/^\(ò,ó\)|^✗|^usage:|^estimated: error|not found in your tasks|command not found/.test(t)) return 'red';
+    if (/^\(ò,ó\)|^✗|^usage:|^fibo: error|not found in your tasks|command not found/.test(t)) return 'red';
     if (/^\(o,O\)/.test(t)) return 'amber b';
     if (/^\((o,o|-,-)\)/.test(t)) return 'lime b';
     if (t === '/)_)' || t === '""') return 'lime';
@@ -167,7 +167,7 @@
     if (/^worst case/.test(t)) return 'amber';
     if (/^all of it computed/.test(t)) return 'ink b';
     if (/^status\s+counted$/.test(t) || /^✓/.test(t)) return 'lime';
-    if (/^(excluded|one subject|by kind of work|!|\.estimated\/ledger)/.test(t)) return 'mut';
+    if (/^(excluded|one subject|by kind of work|!|\.fibo\/ledger)/.test(t)) return 'mut';
     if (/(ago|now)$/.test(t) && !/[×:]/.test(t)) return 'dim';
     if (/^(·|demo repository|a demo is a demo|next:|it has one subject)/.test(t) || /· this tab/.test(t)) return 'dim';
     return 'ink';
@@ -193,7 +193,7 @@
     return parts.length && !rest && total > 0 ? 'duration' : 'none';
   }
   function say(rawKey, rawSaid) {
-    if (!rawKey || !rawSaid) return { lines: ['usage: estimated say KEY DURATION   (e.g. estimated say PROJ-412 2d)'], face: 'refuse' };
+    if (!rawKey || !rawSaid) return { lines: ['usage: fibo say KEY DURATION   (e.g. fibo say PROJ-412 2d)'], face: 'refuse' };
     const key = rawKey.toUpperCase(), said = rawSaid.trim().split(/\s+/).join(' '), kind = kindOf(said);
     const no = (msg) => ({ lines: [refuse(msg)], face: 'refuse' });
     if (kind === 'points') return no(S.no_points);
@@ -215,9 +215,9 @@
 
   function answer(cmd) {
     const a = cmd.split(/\s+/);
-    if (cmd === 'help' || /^estimated (-h|--help|help)$/.test(cmd)) return { lines: HELP };
-    if (cmd === 'man' || cmd === 'man estimated') { openMan(); return { lines: ['opening ESTIMATED(1) …'] }; }
-    if (a[0] !== 'estimated') return { lines: [`${a[0]}: command not found · try help`], face: 'refuse' };
+    if (cmd === 'help' || /^fibo (-h|--help|help)$/.test(cmd)) return { lines: HELP };
+    if (cmd === 'man' || cmd === 'man fibo') { openMan(); return { lines: ['opening FIBO(1) …'] }; }
+    if (a[0] !== 'fibo') return { lines: [`${a[0]}: command not found · try help`], face: 'refuse' };
     let lang = 'en', whose = null, calendar = false, verbose = false;
     const rest = [];
     for (let i = 1; i < a.length; i++) {
@@ -230,14 +230,14 @@
       else if (x === '-v' || x === '--verbose') verbose = true;
       else if (x === '-C') i++;
       else if (['--no-color', '--color', '--offline', '--refresh'].includes(x)) { /* nothing to change here */ }
-      else if (x.startsWith('-') && rest[0] !== 'say') return { lines: ['usage: estimated [options] [command]', `estimated: error: unrecognized arguments: ${x}`], face: 'refuse' };
+      else if (x.startsWith('-') && rest[0] !== 'say') return { lines: ['usage: fibo [options] [command]', `fibo: error: unrecognized arguments: ${x}`], face: 'refuse' };
       else rest.push(x);
     }
     const sub = rest[0];
     if (whose !== null && whose.trim().toLowerCase() !== SAY.email) {
       return { lines: [refuse(fill(S.no_whose, { email: whose, emails: SAY.email }))], face: 'refuse' };
     }
-    if (lang !== 'en') return { lines: ['estimated: this copy in the browser carries the english output only'], face: 'refuse' };
+    if (lang !== 'en') return { lines: ['fibo: this copy in the browser carries the english output only'], face: 'refuse' };
     if (!sub) return { lines: calendar ? O.calendar : verbose ? O.verbose : O.report };
     if (sub === 'demo') return { lines: O.demo };
     if (sub === 'drift') return { lines: O.drift };
@@ -245,7 +245,7 @@
     if (sub === 'say') return say(rest[1], rest.slice(2).join(' '));
     const key = Object.keys(D.tasks).find((k) => k.toLowerCase() === sub.toLowerCase());
     if (key) return { lines: D.tasks[key] };
-    if (mine[sub.toUpperCase()]) return { lines: [`${sub.toUpperCase()}: said ${mine[sub.toUpperCase()]} in this tab · the real ledger lives in .estimated/, this one forgets on reload`] };
+    if (mine[sub.toUpperCase()]) return { lines: [`${sub.toUpperCase()}: said ${mine[sub.toUpperCase()]} in this tab · the real ledger lives in .fibo/, this one forgets on reload`] };
     if (NOT_HERE.has(sub.toLowerCase())) return { lines: [refuse(fill(S.no_verb, { verb: sub }))], face: 'refuse' };
     return { lines: [fill(S.not_found, { key: sub })], face: 'refuse' };
   }
@@ -274,11 +274,11 @@
     .map((k) => /^PROJ-(\d+)$/.exec(k)).filter(Boolean).map((m) => +m[1]);
   const free = `PROJ-${Math.max(...numbers) + 31}`;
   const begun = Object.keys(SAY.started)[0] || SAY.landed[SAY.landed.length - 1];
-  const example = D.films[1] ? D.films[1].cmd : 'estimated';
-  const QUICK = [['estimated', 'estimated'], ['demo', 'estimated demo'], ['one task', example], ['say 2d', `estimated say ${free} 2d`],
-    ['say soon ✗', `estimated say ${free} soon`], ['after start ✗', `estimated say ${begun} 2d`],
-    ['someone else ✗', 'estimated --whose someone@else.com'], ['doctor', 'estimated doctor'], ['drift', 'estimated drift'],
-    ['calendar', 'estimated --calendar'], ['help', 'help'], ['clear', 'clear']];
+  const example = D.films[1] ? D.films[1].cmd : 'fibo';
+  const QUICK = [['fibo', 'fibo'], ['demo', 'fibo demo'], ['one task', example], ['say 2d', `fibo say ${free} 2d`],
+    ['say soon ✗', `fibo say ${free} soon`], ['after start ✗', `fibo say ${begun} 2d`],
+    ['someone else ✗', 'fibo --whose someone@else.com'], ['doctor', 'fibo doctor'], ['drift', 'fibo drift'],
+    ['calendar', 'fibo --calendar'], ['help', 'help'], ['clear', 'clear']];
   const quick = $('#quick');
   QUICK.forEach(([label, cmd]) => {
     const b = document.createElement('button');
@@ -286,7 +286,7 @@
     b.addEventListener('click', () => { run(cmd); input.focus({ preventScroll: true }); });
     quick.appendChild(b);
   });
-  run('estimated demo');
+  run('fibo demo');
 
   // ── three looping films, one clock ──
   const films = D.films.map((f) => {
@@ -356,7 +356,7 @@
   drawLedger();
 
   // ── 06: the token. the program does not know it exists; only config.js does ──
-  const ticker = TK.ticker || '$ESTD', contract = TK.contract || '', pool = TK.pool || '';
+  const ticker = TK.ticker || '$FIB', contract = TK.contract || '', pool = TK.pool || '';
   $$('[data-t="ticker"]').forEach((e) => { e.textContent = ticker; });
   $$('[data-t="network"]').forEach((e) => { e.textContent = TK.network || 'robinhood chain'; });
   $$('[data-t="status"]').forEach((e) => { e.textContent = contract ? 'live' : 'not live yet · address appears here at launch'; });
@@ -395,7 +395,7 @@
   }
   window.Sprites.paintAll();
 
-  // ── man estimated ──
+  // ── man fibo ──
   const man = $('#man');
   function openMan() { man.hidden = false; }
   $('#manBtn').addEventListener('click', openMan);
