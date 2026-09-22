@@ -397,7 +397,7 @@
   const burnEl = $('#burn'), burnCfg = TK.burn || {}, burnAt0 = burnCfg.at ? Date.parse(burnCfg.at) : NaN;
   if (burnEl && contract && !Number.isNaN(burnAt0)) {
     burnEl.hidden = false;
-    const every = Math.max(1, Number(burnCfg.everyHours) || 8), period = every * 3600000, showDays = period > 86400000;
+    const every = Math.max(1, Number(burnCfg.everyHours) || 9), period = every * 3600000, showDays = period > 86400000;
     $('#burnEvery').textContent = `${every} hours`;
     if (!showDays) { const d = $('#burnClock > span'); d.nextElementSibling.remove(); d.remove(); } // a wait under a day has no days column
     const digits = $$('#burnClock b'), tookEl = $('#burnTook'), flag = $('#burnFlag'), whenEl = $('#burnWhen'), countEl = $('#burnCount'), bar = $('#burnBar');
