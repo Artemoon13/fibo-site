@@ -17,7 +17,7 @@ window.FIBO_CONFIG = {
 
     // The burn. At zero, every fee the token has earned buys the token back and that is sent to the burn address; then the clock starts over.
     burn: {
-      at: "2026-09-22T21:48:17Z",            // ISO time of the first burn, UTC. token.sh stamps it at launch; the page rolls it forward every `everyHours` after.
+      at: "2026-09-22T20:49:58Z",            // ISO time of the first burn, UTC. token.sh stamps it at launch; the page rolls it forward every `everyHours` after.
       everyHours: 9,     // how long each wait is
     },
   },
