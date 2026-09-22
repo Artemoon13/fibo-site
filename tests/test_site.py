@@ -48,7 +48,7 @@ class Page(unittest.TestCase):
     def test_the_burn_clock_is_configured_and_stamped_at_launch(self):
         config = (SITE / "config.js").read_text(encoding="utf-8")
         self.assertRegex(config, re.compile(r'^\s*at: "[^"]*",', re.M), msg="burn.at")
-        self.assertRegex(config, re.compile(r"^\s*everyDays: \d+,", re.M), msg="burn.everyDays")
+        self.assertRegex(config, re.compile(r"^\s*everyHours: \d+,", re.M), msg="burn.everyHours")
         self.assertIn('setkey(s, "at", burn_at)', (SITE / "deploy/token.sh").read_text(encoding="utf-8"))
 
 

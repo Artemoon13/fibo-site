@@ -397,15 +397,17 @@
   const burnEl = $('#burn'), burnCfg = TK.burn || {}, burnAt0 = burnCfg.at ? Date.parse(burnCfg.at) : NaN;
   if (burnEl && contract && !Number.isNaN(burnAt0)) {
     burnEl.hidden = false;
-    const every = Math.max(1, Number(burnCfg.everyDays) || 7), period = every * 86400000;
-    $('#burnEvery').textContent = every;
+    const every = Math.max(1, Number(burnCfg.everyHours) || 8), period = every * 3600000, showDays = period > 86400000;
+    $('#burnEvery').textContent = `${every} hours`;
+    if (!showDays) { const d = $('#burnClock > span'); d.nextElementSibling.remove(); d.remove(); } // a wait under a day has no days column
     const digits = $$('#burnClock b'), tookEl = $('#burnTook'), flag = $('#burnFlag'), whenEl = $('#burnWhen'), countEl = $('#burnCount'), bar = $('#burnBar');
     const dur = (s) => s < 3600 ? `${Math.floor(s / 60)} min` : s < 86400 ? `${Math.floor(s / 3600)} h ${Math.floor(s / 60) % 60} min` : `${Math.floor(s / 86400)} d ${Math.floor(s / 3600) % 24} h`;
     let heat = 0.2;
     const tick = () => {
       const now = Date.now(), n = now < burnAt0 ? 0 : Math.floor((now - burnAt0) / period) + 1, at = burnAt0 + n * period, from = at - period;
       const left = Math.max(0, Math.floor((at - now) / 1000)), gone = Math.max(0, Math.floor((now - from) / 1000)), done = Math.min(1, (now - from) / period);
-      [Math.floor(left / 86400), Math.floor(left / 3600) % 24, Math.floor(left / 60) % 60, left % 60].forEach((v, i) => {
+      const parts = showDays ? [Math.floor(left / 86400), Math.floor(left / 3600) % 24] : [Math.floor(left / 3600)];
+      [...parts, Math.floor(left / 60) % 60, left % 60].forEach((v, i) => {
         const t = pad(v);
         if (digits[i].textContent !== t) digits[i].textContent = t;
       });
