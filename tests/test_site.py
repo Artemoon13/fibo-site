@@ -44,6 +44,14 @@ class Page(unittest.TestCase):
         self.assertIn("not financial advice", html)
         self.assertIn("nothing is deployed yet", html)
         self.assertIn('<div class="burn" id="burn" hidden>', html)  # the burn clock waits for the address
+        self.assertIn('<a href="#roadmap">roadmap</a>', html)
+        self.assertIn('id="roadmap"', html)
+
+    def test_the_roadmap_is_a_list_of_promises_with_numbers(self):
+        config = (SITE / "config.js").read_text(encoding="utf-8")
+        lines = re.findall(r'\{ key: "(ROAD-\d+)", what: "[^"]+", said: "(\d+[wdh])", took: "[^"]*", link: "[^"]*" \}', config)
+        self.assertEqual([k for k, _ in lines], [f"ROAD-{i}" for i in range(1, len(lines) + 1)])
+        self.assertGreaterEqual(len(lines), 5)
 
     def test_the_burn_clock_is_configured_and_stamped_at_launch(self):
         config = (SITE / "config.js").read_text(encoding="utf-8")

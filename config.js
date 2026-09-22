@@ -21,4 +21,16 @@ window.FIBO_CONFIG = {
       everyHours: 9,     // how long each wait is
     },
   },
+
+  // The roadmap: promises with numbers on them, in the program's own units (a day is 8 h, a week is 40 h).
+  // When a line ships, write its `took` in the same units and the page prints the multiplier. Leave it empty until then.
+  roadmap: [
+    { key: "ROAD-1", what: "{ticker} lands", said: "1d", took: "", link: "" },
+    { key: "ROAD-2", what: "the first burn", said: "9h", took: "", link: "" },
+    { key: "ROAD-3", what: "the burn log on this page: every burn, its tx, its amount", said: "2d", took: "", link: "" },
+    { key: "ROAD-4", what: "pip install fibo", said: "3d", took: "", link: "" },
+    { key: "ROAD-5", what: "the multiplier as a badge for your README", said: "2d", took: "", link: "" },
+    { key: "ROAD-6", what: "a pre-commit hook: no estimate, no first commit", said: "1w", took: "", link: "" },
+    { key: "ROAD-7", what: "more sources: YouTrack, Azure Boards, Shortcut", said: "2w", took: "", link: "" },
+  ],
 };

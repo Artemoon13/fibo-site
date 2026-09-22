@@ -267,6 +267,13 @@ canvas.px { image-rendering: pixelated; display: block; }
 .limits span { color: var(--mut); }
 .roadmap { display: flex; flex-direction: column; }
 
+/* 08 roadmap: the page's own ledger */
+.road .lrow.done .h, .road .lrow.done .took { color: var(--lime); }
+.road .nums { display: flex; gap: 14px; white-space: nowrap; color: var(--mut); }
+.road .nums .took { color: var(--dim2); }
+.road .nums .m { min-width: 4.5ch; text-align: right; font-weight: 700; }
+@media (max-width: 560px) { .road .lrow { grid-template-columns: auto minmax(0, 1fr); } .road .nums { grid-column: 2; } }
+
 /* footer */
 .foot { max-width: 1200px; margin: 0 auto; padding: 96px 28px 40px; font-size: 12px; color: var(--mut); }
 .empty-term { border: 1px solid var(--moss); background: var(--panel); padding: 18px 20px; font: 400 12.5px/1.7 var(--mono); color: var(--ink); display: flex; gap: 18px; align-items: flex-start; flex-wrap: wrap; }

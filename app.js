@@ -447,6 +447,26 @@
     };
     if (reduced) { for (let i = 0; i < 90; i++) frame(); } else setInterval(() => { if (!document.hidden) frame(); }, 55);
   }
+  // ── 08 roadmap: promises with numbers on them. the page runs the program's arithmetic on itself ──
+  const road = $('#road'), ROAD = Array.isArray(CFG.roadmap) ? CFG.roadmap : [];
+  if (road && ROAD.length) {
+    const hours = (s) => { let h = 0, m; const re = /(\d+(?:\.\d+)?)\s*(w|d|h|min|m)\b/g; while ((m = re.exec(String(s)))) h += +m[1] * ({ w: 40, d: 8, h: 1, min: 1 / 60, m: 1 / 60 }[m[2]]); return h; };
+    const tone = (m) => m >= 4 ? 'amber' : m <= 1 ? 'dim2' : 'ink';
+    const rows = ROAD.map((r) => {
+      const said = hours(r.said), took = r.took ? hours(r.took) : 0, m = said && took ? took / said : 0, what = esc(fill(r.what, { ticker }));
+      return { m, html: `<div class="lrow${took ? ' done' : ''}"><span class="h">${esc(r.key)}</span><span class="what">${r.link ? `<a href="${esc(r.link)}">${what}</a>` : what}</span>`
+        + `<span class="nums"><span class="said">said ${esc(r.said)}</span><span class="took">${took ? `took ${esc(r.took)}` : 'took —'}</span><b class="m ${m ? tone(m) : 'dim2'}">${m ? `×${m.toFixed(1)}` : '×—'}</b></span></div>` };
+    });
+    road.innerHTML = rows.map((r) => r.html).join('');
+    const logs = rows.map((r) => r.m).filter(Boolean).sort((a, b) => a - b).map(Math.log), mid = logs.length >> 1;
+    const mult = logs.length ? Math.exp(logs.length % 2 ? logs[mid] : (logs[mid - 1] + logs[mid]) / 2) : 0; // the median, in log space, like the program
+    $('#roadSaid').textContent = ROAD.length;
+    $('#roadClosed').textContent = `${logs.length} closed`;
+    $('#roadMult').textContent = mult ? `×${mult.toFixed(1)}` : '×—';
+    $('#roadMult').className = mult ? tone(mult) : 'dim';
+    $('#roadMsg').textContent = mult ? `${ROAD.length} promises · ${logs.length} closed · ×${mult.toFixed(1)} — multiply the rest by that.`
+      : `${ROAD.length} promises · 0 closed · nothing to divide yet. the owl is waiting.`;
+  }
   window.Sprites.paintAll();
 
   // ── man fibo ──
@@ -460,7 +480,7 @@
   });
 
   // ── the perch: the owl sits on a branch and slides with the page ──
-  const SECS = ['top', 'film', 'start', 'promise', 'multiplier', 'refuses', 'disk', 'token', 'limits'];
+  const SECS = ['top', 'film', 'start', 'promise', 'multiplier', 'refuses', 'disk', 'token', 'limits', 'roadmap'];
   const rail = $('#rail'), page = $('#page'), prog = $('#railProg'), perch = $('#perch'), perchOwl = $('#perchOwl');
   $('#ticks').innerHTML = SECS.map((s, i) => `<a class="tick" href="#${s}" title="${s}" style="top:calc(72px + (100% - 222px) * ${(i / (SECS.length - 1)).toFixed(3)})"></a>`).join('');
   let lastY = scrollY, dirTimer = 0, queued = false;

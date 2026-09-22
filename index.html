@@ -33,7 +33,7 @@
   <div class="nav-in">
     <a href="#top" class="brand"><canvas class="px" id="navOwl" data-sprite="owl:auditor" data-scale="1"></canvas><span class="brand-word">FIBO</span></a>
     <div class="nav-links">
-      <a href="#film">film</a><a href="#start">start</a><a href="#multiplier">multiplier</a><a href="#refuses">refusals</a><a href="#disk">disk</a><a href="#token" class="token">token</a>
+      <a href="#film">film</a><a href="#start">start</a><a href="#multiplier">multiplier</a><a href="#refuses">refusals</a><a href="#disk">disk</a><a href="#roadmap">roadmap</a><a href="#token" class="token">token</a>
       <button class="man-btn" id="manBtn" title="man fibo  (or press ?)">?</button>
     </div>
     <button class="btn-nav" data-copy="install"><span class="ok" hidden>copied ✓</span><span class="idle">pipx install</span></button>
@@ -246,7 +246,23 @@
     <div><b>THE DEMO IS A DEMO</b><span>reproducible, and nobody's record of promises. yours starts empty.</span></div>
     <div><b>IT DOES NOT KNOW THE RIGHT ANSWER</b><span>there is no correct estimate. it knows what you said and how long it took.</span></div>
     <div><b>IT PREDICTS NOTHING</b><span>no model, no opinion. what was written down, what happened, one division.</span></div>
-    <div><b class="ink">ROADMAP · ORDER, NOT CALENDAR</b><span class="roadmap"><span>00 the tool <span class="lime">✓</span></span><span>01 the multiplier <span class="lime">✓</span></span><span>02 by kind of work <span class="lime">✓</span></span><span>03 the drift <span class="lime">✓</span></span><span>04 more sources <span class="dim">YouTrack, Azure Boards, Shortcut …</span></span></span></div>
+    <div><b class="ink">ROADMAP · ORDER, NOT CALENDAR</b><span class="roadmap"><span>00 the tool <span class="lime">✓</span></span><span>01 the multiplier <span class="lime">✓</span></span><span>02 by kind of work <span class="lime">✓</span></span><span>03 the drift <span class="lime">✓</span></span><span>04 what is next has a number on it: <a href="#roadmap">08 roadmap ↓</a></span></span></div>
+  </div>
+</section>
+
+<section id="roadmap" class="sec" data-reveal="1" data-screen-label="08 roadmap">
+  <div class="sec-head"><span class="sha">5a1d70c</span><h2>08 roadmap · the ledger</h2><span class="meta">said: <span id="roadSaid">7</span> lines · took: <span class="ink" id="roadClosed">0 closed</span> · <span id="roadMult" class="dim">×—</span></span></div>
+  <div class="cols w340">
+    <div class="stack g18">
+      <p class="prose">Promises with numbers on them, in the program's own units: a day is 8 h, a week is 40 h. When a line ships, its <span class="lime">took</span> is written next to its <span class="ink">said</span>, and the multiplier that comes out is what the rest of this list should be multiplied by.</p>
+      <p class="prose">Order, not calendar. A <span class="ink">said</span> is a length, not a date, and nothing here moves up because someone asked.</p>
+      <blockquote class="aph"><span class="hash">#</span><span>A roadmap nobody measures is a mood board.</span></blockquote>
+    </div>
+    <div class="ledger road">
+      <div class="ledger-top"><span>fibo.fund/roadmap.jsonl</span><span>said · took · ×</span></div>
+      <div id="road"></div>
+      <div class="ledger-doc"><canvas class="px" data-sprite="owl:report" data-scale="2" style="flex:none"></canvas><span class="msg"><span class="ink">$ fibo</span><br><span id="roadMsg"></span></span></div>
+    </div>
   </div>
 </section>
 
@@ -275,6 +291,7 @@
       <b>REFUSALS</b><span><a href="#refuses">not a duration · written after start · not guessed · one subject · points ≠ time</a></span>
       <b>FILES</b><span><a href="#disk">.fibo.json · .fibo/ledger.jsonl · .fibo/cache/</a></span>
       <b>TOKEN</b><span><a href="#token"><span data-t="ticker">$FIB</span> · the program does not touch it</a></span>
+      <b>ROADMAP</b><span><a href="#roadmap">promises with numbers on them · order, not calendar</a></span>
       <b>BUGS</b><span><a href="#limits">it cannot see thinking. it cannot see interruption. it predicts nothing.</a></span>
       <b>AUTHOR</b><span>one subject: you</span>
     </div>
