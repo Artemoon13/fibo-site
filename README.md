@@ -4,7 +4,7 @@
 
 <h1 align="center">Fibo · the page</h1>
 
-<p align="center">The landing page for <a href="https://github.com/Artemoon13/fibo">Fibo</a>, git blame for your promises.<br>
+<p align="center">The landing page for <a href="https://github.com/0xkuch/Fibo">Fibo</a>, git blame for your promises.<br>
 Plain HTML, CSS and JavaScript. No framework, no bundler, nothing to install to look at it.</p>
 
 ---
@@ -24,7 +24,7 @@ Open `index.html` from disk. There is nothing to build and nothing to serve.
 When the program's output changes, regenerate `data.js` from a checkout of it and commit the result:
 
 ```sh
-git clone https://github.com/Artemoon13/fibo ../fibo
+git clone https://github.com/0xkuch/Fibo ../fibo
 python build.py --project ../fibo
 ```
 

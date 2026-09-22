@@ -25,7 +25,7 @@
   window.Sprites.favicon();
 
   // ── where the code lives: the program's own repository, named in config.js ──
-  const repoUrl = CFG.repoUrl || 'https://github.com/Artemoon13/fibo';
+  const repoUrl = CFG.repoUrl || 'https://github.com/0xkuch/Fibo';
   const install = `pipx install git+${repoUrl}`;
   $$('[data-repo]').forEach((a) => { a.href = repoUrl; });
   $$('[data-repo-text]').forEach((e) => { e.textContent = repoUrl; });

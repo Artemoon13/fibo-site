@@ -32,7 +32,7 @@ def locate(given: str | None) -> Path:
 
 
 _options = argparse.ArgumentParser(description="Build data.js from the real program.")
-_options.add_argument("--project", help="a checkout of github.com/Artemoon13/fibo")
+_options.add_argument("--project", help="a checkout of github.com/0xkuch/Fibo")
 ROOT = locate(_options.parse_args().project)
 sys.path.insert(0, str(ROOT / "src"))
 
