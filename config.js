@@ -9,15 +9,15 @@ window.FIBO_CONFIG = {
     ticker: "$FIB",
     network: "robinhood chain",
     price: "—",
-    contract: "",       // empty until launch: the page says so instead of inventing one
-    swap: "",           // swap link
-    explorer: "",       // explorer link
-    pool: "",           // pool address: turns the made-up chart into the live GeckoTerminal one
+    contract: "0xfc7e0cddb9d7a1676edefbb4d87dda29efe2053f",       // empty until launch: the page says so instead of inventing one
+    swap: "https://www.ponsfamily.com/launchpad/0xfc7e0cddb9d7a1676edefbb4d87dda29efe2053f",           // swap link
+    explorer: "https://robinhoodchain.blockscout.com/token/0xfc7e0cddb9d7a1676edefbb4d87dda29efe2053f",       // explorer link
+    pool: "0xdecd6e17c42a6b3da965c6e9652814b6bb237f39",           // pool address: turns the made-up chart into the live GeckoTerminal one
     geckoNetwork: "robinhood",
 
     // The burn. At zero, every fee the token has earned buys the token back and that is sent to the burn address; then the clock starts over.
     burn: {
-      at: "",            // ISO time of the first burn, UTC. token.sh stamps it at launch; the page rolls it forward every `everyHours` after.
+      at: "2026-09-23T03:27:37Z",            // ISO time of the first burn, UTC. token.sh stamps it at launch; the page rolls it forward every `everyHours` after.
       everyHours: 9,     // how long each wait is
     },
   },
