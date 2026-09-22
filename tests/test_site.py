@@ -43,6 +43,13 @@ class Page(unittest.TestCase):
         html = (SITE / "index.html").read_text(encoding="utf-8")
         self.assertIn("not financial advice", html)
         self.assertIn("nothing is deployed yet", html)
+        self.assertIn('<div class="burn" id="burn" hidden>', html)  # the burn clock waits for the address
+
+    def test_the_burn_clock_is_configured_and_stamped_at_launch(self):
+        config = (SITE / "config.js").read_text(encoding="utf-8")
+        self.assertRegex(config, re.compile(r'^\s*at: "[^"]*",', re.M), msg="burn.at")
+        self.assertRegex(config, re.compile(r"^\s*everyDays: \d+,", re.M), msg="burn.everyDays")
+        self.assertIn('setkey(s, "at", burn_at)', (SITE / "deploy/token.sh").read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

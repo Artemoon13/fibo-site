@@ -393,6 +393,58 @@
     $('#candles').innerHTML = candles.join('');
     $('#volume').innerHTML = volume.join('');
   }
+  // ── the burn: a clock standing in a fire. at zero the fees buy the token and the token is burned; then the clock starts over ──
+  const burnEl = $('#burn'), burnCfg = TK.burn || {}, burnAt0 = burnCfg.at ? Date.parse(burnCfg.at) : NaN;
+  if (burnEl && contract && !Number.isNaN(burnAt0)) {
+    burnEl.hidden = false;
+    const every = Math.max(1, Number(burnCfg.everyDays) || 7), period = every * 86400000;
+    $('#burnEvery').textContent = every;
+    const digits = $$('#burnClock b'), tookEl = $('#burnTook'), flag = $('#burnFlag'), whenEl = $('#burnWhen'), countEl = $('#burnCount'), bar = $('#burnBar');
+    const dur = (s) => s < 3600 ? `${Math.floor(s / 60)} min` : s < 86400 ? `${Math.floor(s / 3600)} h ${Math.floor(s / 60) % 60} min` : `${Math.floor(s / 86400)} d ${Math.floor(s / 3600) % 24} h`;
+    let heat = 0.2;
+    const tick = () => {
+      const now = Date.now(), n = now < burnAt0 ? 0 : Math.floor((now - burnAt0) / period) + 1, at = burnAt0 + n * period, from = at - period;
+      const left = Math.max(0, Math.floor((at - now) / 1000)), gone = Math.max(0, Math.floor((now - from) / 1000)), done = Math.min(1, (now - from) / period);
+      [Math.floor(left / 86400), Math.floor(left / 3600) % 24, Math.floor(left / 60) % 60, left % 60].forEach((v, i) => {
+        const t = pad(v);
+        if (digits[i].textContent !== t) digits[i].textContent = t;
+      });
+      tookEl.textContent = dur(gone);
+      const burning = n > 0 && gone < 900, lastHour = left < 3600; // fifteen minutes of "burning" after every zero
+      flag.textContent = burning ? 'burning' : lastHour ? 'last hour' : 'lit';
+      burnEl.classList.toggle('hot', burning || lastHour);
+      whenEl.textContent = `${n ? 'next' : 'first'} burn · ${new Date(at).toISOString().slice(0, 16).replace('T', ' ')} utc`;
+      countEl.textContent = `burn #${n + 1}`;
+      bar.style.width = `${(done * 100).toFixed(2)}%`;
+      heat = burning || lastHour ? 1 : 0.22 + 0.78 * done * done;
+    };
+    tick();
+    setInterval(tick, 1000);
+    const fire = $('#burnFire'), ctx = fire.getContext('2d'), SCALE = 4, MAX = 17;
+    const stops = [[15, 24, 12], [31, 51, 18], [61, 92, 31], [111, 154, 42], [181, 232, 83], [215, 255, 122], [240, 196, 25], [255, 210, 63], [255, 248, 220]];
+    const PAL = [[0, 0, 0, 0]];
+    for (let i = 1; i <= MAX; i++) {
+      const t = (i - 1) / (MAX - 1) * (stops.length - 1), k = Math.min(stops.length - 2, Math.floor(t)), f = t - k;
+      PAL.push([0, 1, 2].map((c) => Math.round(stops[k][c] + (stops[k + 1][c] - stops[k][c]) * f)).concat(i < 3 ? 140 + i * 40 : 255));
+    }
+    let W = 0, H = 0, buf, img;
+    const frame = () => {
+      const w = Math.max(1, Math.ceil(fire.clientWidth / SCALE)), h = Math.max(1, Math.ceil(fire.clientHeight / SCALE));
+      if (w !== W || h !== H) { W = w; H = h; fire.width = W; fire.height = H; buf = new Uint8Array(W * H); img = ctx.createImageData(W, H); }
+      const seed = Math.round(MAX * (0.55 + 0.45 * heat)), lit = 0.3 + 0.7 * heat, cool = 0.3 * (1 - heat), base = (H - 1) * W;
+      for (let x = 0; x < W; x++) buf[base + x] = Math.random() < lit ? seed : (Math.random() * seed * 0.5) | 0;
+      for (let y = 0; y < H - 1; y++) {
+        for (let x = 0; x < W; x++) {
+          const v = buf[(y + 1) * W + x], r = (Math.random() * 3) | 0, dx = Math.min(W - 1, Math.max(0, x + r - 1));
+          buf[y * W + dx] = v ? Math.max(0, v - (r & 1) - (Math.random() < cool ? 1 : 0)) : 0;
+        }
+      }
+      const d = img.data;
+      for (let i = 0, j = 0; i < W * H; i++, j += 4) { const c = PAL[buf[i]]; d[j] = c[0]; d[j + 1] = c[1]; d[j + 2] = c[2]; d[j + 3] = c[3]; }
+      ctx.putImageData(img, 0, 0);
+    };
+    if (reduced) { for (let i = 0; i < 90; i++) frame(); } else setInterval(() => { if (!document.hidden) frame(); }, 55);
+  }
   window.Sprites.paintAll();
 
   // ── man fibo ──

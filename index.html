@@ -209,6 +209,21 @@
       </div>
     </div>
   </div>
+  <div class="burn" id="burn" hidden>
+    <div class="burn-head"><b>the burn</b><span>said: every <span id="burnEvery">7</span> days · took so far: <span class="ink" id="burnTook">—</span></span><span class="burn-flag" id="burnFlag">lit</span></div>
+    <div class="burn-copy">
+      <canvas class="px" data-sprite="owl:auditor" data-scale="2" style="flex:none"></canvas>
+      <div class="stack" style="gap:6px">
+        <p>when this reaches zero, every fee <span data-t="ticker">$FIB</span> has earned buys <span data-t="ticker">$FIB</span>, and that <span data-t="ticker">$FIB</span> goes to the burn address. nothing comes back. then the clock starts over.</p>
+        <p class="dim2">a wallet does this, not the program. the clock is on this page so that it can be checked; checking is the whole point.</p>
+      </div>
+    </div>
+    <div class="burn-stage">
+      <canvas class="burn-fire" id="burnFire" aria-hidden="true"></canvas>
+      <div class="burn-clock" id="burnClock"><span><b>00</b><i>days</i></span><em>:</em><span><b>00</b><i>hours</i></span><em>:</em><span><b>00</b><i>min</i></span><em>:</em><span><b>00</b><i>sec</i></span></div>
+    </div>
+    <div class="burn-foot"><span id="burnWhen">first burn · —</span><span id="burnCount">burn #1</span><span class="track"><span class="took" id="burnBar"></span></span></div>
+  </div>
   <div class="chart">
     <div class="chart-top"><b>live chart</b><span>powered by geckoterminal</span><span class="pool" id="chartPool">— · pool address appears here</span></div>
     <div id="chartLive" hidden></div>
