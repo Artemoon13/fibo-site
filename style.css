@@ -209,6 +209,7 @@ canvas.px { image-rendering: pixelated; display: block; }
 .token-name .status { margin-left: auto; font: 400 10px/1 var(--pixel); color: var(--bg); background: var(--amber); padding: 6px 8px; }
 .price-row { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
 .price { font: 300 clamp(56px, 7vw, 96px)/1 var(--mono); letter-spacing: -.06em; color: var(--ink); }
+.price.long { font-size: clamp(36px, 4.6vw, 60px); }
 .kv { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 18px; font-size: 12.5px; line-height: 1.7; color: var(--mut); }
 .kv .k { color: var(--ink); }
 .kv .v { overflow-wrap: anywhere; font-size: 12px; }

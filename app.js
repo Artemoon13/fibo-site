@@ -393,6 +393,29 @@
     $('#candles').innerHTML = candles.join('');
     $('#volume').innerHTML = volume.join('');
   }
+  // ── the price: geckoterminal's number for the pool, every 30 s. the program never prints it; the page does, and names the source ──
+  const priceEl = $('#tokenPrice'), priceNote = $('#priceNote');
+  if (pool && priceEl && priceNote && typeof fetch === 'function') {
+    const usd = (p) => p >= 1000 ? p.toLocaleString('en-US', { maximumFractionDigits: 0 }) : p >= 1 ? p.toFixed(2) : p.toFixed(Math.min(12, Math.ceil(-Math.log10(p)) + 3));
+    const quote = async () => {
+      try {
+        const r = await fetch(`https://api.geckoterminal.com/api/v2/networks/${encodeURIComponent(TK.geckoNetwork || 'robinhood')}/pools/${encodeURIComponent(pool)}`,
+          { headers: { accept: 'application/json;version=20230302' } });
+        if (!r.ok) return;
+        const d = (await r.json()).data, a = d.attributes || {}, base = String((((d.relationships || {}).base_token || {}).data || {}).id || '').toLowerCase();
+        const isBase = !contract || base.endsWith(contract.toLowerCase()), p = Number(isBase ? a.base_token_price_usd : a.quote_token_price_usd);
+        if (!(p > 0)) return;
+        const text = `$${usd(p)}`, ch = isBase ? Number((a.price_change_percentage || {}).h24) : NaN;
+        priceEl.textContent = text;
+        priceEl.classList.toggle('long', text.length > 8);
+        priceNote.innerHTML = `price · <span class="ink">usd</span> · geckoterminal, every 30 s<br>24 h · ${Number.isNaN(ch) ? '<span class="dim">—</span>'
+          : `<span class="${ch < 0 ? 'red' : 'lime'}">${ch > 0 ? '+' : ''}${ch.toFixed(1)}%</span>`}`;
+      } catch (e) { /* the dash stays; the owl saw */ }
+    };
+    quote();
+    setInterval(() => { if (!document.hidden) quote(); }, 30000);
+  }
+
   // ── the burn: a clock standing in a fire. at zero the fees buy the token and the token is burned; then the clock starts over ──
   const burnEl = $('#burn'), burnCfg = TK.burn || {}, burnAt0 = burnCfg.at ? Date.parse(burnCfg.at) : NaN;
   if (burnEl && contract && !Number.isNaN(burnAt0)) {
