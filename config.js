@@ -12,7 +12,7 @@ window.FIBO_CONFIG = {
     contract: "0xfc7e0cddb9d7a1676edefbb4d87dda29efe2053f",       // empty until launch: the page says so instead of inventing one
     swap: "https://www.ponsfamily.com/launchpad/0xfc7e0cddb9d7a1676edefbb4d87dda29efe2053f",           // swap link
     explorer: "https://robinhoodchain.blockscout.com/token/0xfc7e0cddb9d7a1676edefbb4d87dda29efe2053f",       // explorer link
-    pool: "0xdecd6e17c42a6b3da965c6e9652814b6bb237f39",           // pool address: turns the made-up chart into the live GeckoTerminal one
+    pool: "0xd508f4f03cc73775f46c1102753cd4dba74d10124ecf3db969d2608e9b63c6b5",           // pool address: turns the made-up chart into the live GeckoTerminal one
     geckoNetwork: "robinhood",
 
     // The burn. At zero, every fee the token has earned buys the token back and that is sent to the burn address; then the clock starts over.
